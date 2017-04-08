@@ -1,9 +1,9 @@
 # Safari Extention - Site Blocker（仮）
 
-Site Blocker（仮）はMacOSのSafari機能拡張です。
+Site Blocker（仮）はMacOSのSafari機能拡張です。  
 指定したドメインに属するサイトへのアクセスを制限することができます。
 
-だらだらとインターネットをしてしまう事を防ぎ、
+だらだらとインターネットをしてしまう事を防ぎ、  
 本来やるべきことに使うための時間を捻出することが狙いです。
 
 主に以下の機能があります。
@@ -30,7 +30,7 @@ Site Blocker（仮）はMacOSのSafari機能拡張です。
 
 
 ## 動作環境
-MacOS Safari 10.1〜
+MacOS Safari 10.1〜  
 ※上記を基準に開発しているため、それ以外の上位・下位バージョンでの動作は不明
 
 
