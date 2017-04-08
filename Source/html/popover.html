@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PopOver</title>
+<link rel="stylesheet" href="../css/sanitize.css">
+<link rel="stylesheet" href="../css/options.css">
+<link rel="stylesheet" href="../css/popover.css">
+</head>
+
+<body>
+
+<div class="container">
+<div class="header clearfix">
+  <h1 class="header__ttl">Site Blocker</h1>
+  <a href="options.html" id="js__SettingOpen" class="header__btn"><img src="../img/popup_ico_setting.svg" width="18" height="18" alt="Settings"></a>
+  <!-- <a href="../" id="js__globalOpen" class="header__btn"><img src="../img/popup_ico_global.svg" width="18" height="18" alt="Global"></a> -->
+</div>
+
+<div class="blockDomain clearfix">
+  <p class="blockDomain__ttl">Block Target Domain</p>
+  <p class="blockDomain__url"><a href="#" id="js__ActivePageUrl">null</a></p>
+
+  <div class="l-clm">
+  <label class="c-select l-clm-2">
+  <select name="example" id="">
+    <option value="">List 1（未実装）</option>
+    <option value="">List 2（未実装）</option>
+  </select>
+  </label>
+  <button type="submit" value="Add" class="c-button l-clm-2" id="js__btn--add">Add List</button>
+  </div>
+
+</div>
+
+<script src="../js/popover.js"></script>
+</body>
+</html>
