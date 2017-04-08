@@ -1,0 +1,95 @@
+/* Index
+---------------------------------------------------------------------- */
+/*
+  Import
+  General
+  Header
+  Content
+*/
+
+
+/* Import
+---------------------------------------------------------------------- */
+
+@import 'https://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto+Slab:100,300,400,700';
+
+/* e.g.) */
+/* font-family: 'Roboto Slab', serif; */
+/* font-family: 'Montserrat', sans-serif; */
+
+
+/* General
+---------------------------------------------------------------------- */
+
+:root {
+  background-color: #e9e9e9;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+a:link,
+a:visited {
+  color: #007bff;
+  text-decoration: none;
+}
+
+
+/* Content
+---------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.header {
+  padding: 8px 16px;
+  border-bottom: solid 1px #d4d4d4;
+}
+
+.header:last-child {
+  /* padding: 0 16px; */
+  border-bottom: none;
+}
+
+.header__ttl {
+  float: left;
+  font-size: 1.6rem;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  /* padding: 0 0 6px; */
+  /* text-align: center; */
+  /* width: 100%; */
+  /* position: absolute; */
+}
+
+.header__btn {
+  float: right;
+  width: 18px;
+  height: 18px;
+  margin: 1px -2px 0 10px;
+  background-size: 100%;
+}
+
+.header__btn a {
+  display: block;
+}
+
+.blockDomain {
+  padding: 10px 16px 8px;
+  /* border-bottom: solid 1px #d4d4d4; */
+}
+
+.blockDomain__ttl {
+  font-size: 1.2rem;
+  margin-bottom: 0.1rem;
+  color: #999999;
+}
+
+.blockDomain__url {
+  margin-bottom: 0.7rem;
+}
+

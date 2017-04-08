@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>kskg</string>
+	<key>Builder Version</key>
+	<string>11603.1.30.0.34</string>
+	<key>CFBundleDisplayName</key>
+	<string>Site Blocker</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.kurobuchi.siteblocker</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Database Quota</key>
+		<integer>10485760</integer>
+		<key>Global Page</key>
+		<string>html/global.html</string>
+		<key>Popovers</key>
+		<array>
+			<dict>
+				<key>Filename</key>
+				<string>html/popover.html</string>
+				<key>Height</key>
+				<integer>140</integer>
+				<key>Identifier</key>
+				<string>siteBlockerPop</string>
+				<key>Width</key>
+				<integer>320</integer>
+			</dict>
+		</array>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Identifier</key>
+				<string>SiteBlockernv</string>
+				<key>Image</key>
+				<string>img/safari-icon.png</string>
+				<key>Include By Default</key>
+				<true/>
+				<key>Label</key>
+				<string>SiteBlocker</string>
+				<key>Popover</key>
+				<string>siteBlockerPop</string>
+			</dict>
+		</array>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>js/injecting_end.js</string>
+			</array>
+			<key>Start</key>
+			<array>
+				<string>js/injecting_start.js</string>
+			</array>
+		</dict>
+		<key>Stylesheets</key>
+		<array>
+			<string>css/injecting.css</string>
+		</array>
+	</dict>
+	<key>Description</key>
+	<string>Site Block</string>
+	<key>DeveloperIdentifier</key>
+	<string>0000000000</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Website</key>
+	<string>https://github.com/kskg</string>
+</dict>
+</plist>

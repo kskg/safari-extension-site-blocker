@@ -1,0 +1,56 @@
+/* Index
+---------------------------------------------------------------------- */
+/*
+  General
+  Header
+*/
+
+
+/* General
+---------------------------------------------------------------------- */
+
+:root {
+  font-size: 62.5%;
+  -webkit-font-smoothing: antialiased;
+  color: #666666;
+  letter-spacing: 0.6px;
+  background: #f7f7f7;
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
+a:link,
+a:visited {
+  color: #777777;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-size: 1.4rem;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+
+/* Header
+---------------------------------------------------------------------- */
+
+body {
+  font-size: 10rem;
+  text-align: center;
+}

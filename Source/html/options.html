@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Options</title>
+<link rel="stylesheet" href="../css/sanitize.css">
+<link rel="stylesheet" href="../css/options.css">
+</head>
+<body>
+
+<div class="p-message" id="js__message"></div>
+
+<header class="pageHeader">
+  <h1 class="pageHeader__ttl">Site Blocker<span class="thin"> / </span><span id="js__name">List Name</span></h1>
+  <p class="pageHeader__help" id="js__name--edit">Edti</p>
+  <div class="pageHeader__radio">
+    <label class="c-radio--rich"><input type="radio" name="onoff" value="on" id="js__runFlag--on"><span class="inner">ON</span></label>
+    <label class="c-radio--rich"><input type="radio" name="onoff" value="off" id="js__runFlag--off"><span class="inner">OFF</span></label>
+  </div>
+
+</header>
+
+<div class="content">
+<div class="side">
+  <ul class="side__list js__side__sortable" id="js__side__list">
+<!--    <li class="side__list__item is-ON" id="js__name--side" data-sortID="1">List Name 1</li>
+   <li class="side__list__item" id="js__name--side" data-sortID="1">List Name 1</li>
+   <li class="side__list__item" id="js__name--side" data-sortID="1">List Name 1</li> -->
+  </ul>
+  <div class="side__addList" id="js__addList">+Add list</div>
+<!-- /.side --></div>
+
+<div class="main clearfix" id="js__main">
+<div class="main__hide"></div>
+  <div class="main--left">
+    <div class="main__section">
+      <h2 class="main__section__ttl">URL List</h2>
+      <textarea name="blockurl" class="c-textarea c-textarea--multiLine" id="js__text--urlList"></textarea>
+      <button type="submit" value="Save" class="c-button" id="js__btn--save">save</button>
+      <button type="submit" value="Delete" class="c-button" id="js__btn--delete">delete</button>
+    </div>
+  <!-- /.main-Left --></div>
+
+  <div class="main--right">
+
+    <div class="main__section">
+      <h2 class="main__section__ttl">Block Time</h2>
+      <input type="text" name="###" value="" class="c-textarea" id="js__timeZone">
+<!--       <label class="c-select l-clm-2">
+      <select name="hour" id="js__timeZone--hour">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+      </select>
+      </label>
+      <label class="c-select l-clm-2">
+      <select name="minute" id="js__timeZone--minute">
+        <option value="0">00</option>
+        <option value="5">05</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+        <option value="30">30</option>
+        <option value="35">35</option>
+        <option value="40">40</option>
+        <option value="45">45</option>
+        <option value="50">50</option>
+        <option value="55">55</option>
+      </select>
+      </label> -->
+    </div>
+
+    <div class="main__section clearfix">
+      <h2 class="main__section__ttl">Block Week Day</h2>
+      <label class="c-checkbox"><input type="checkbox" name="week" value="sun" id="js__week--sun"><span class="icon"></span>Sun</label>
+      <label class="c-checkbox"><input type="checkbox" name="week" value="mon" id="js__week--mon"><span class="icon"></span>Mon</label>
+      <label class="c-checkbox"><input type="checkbox" name="week" value="tue" id="js__week--tue"><span class="icon"></span>Tue</label>
+      <label class="c-checkbox"><input type="checkbox" name="week" value="wed" id="js__week--wed"><span class="icon"></span>Wed</label>
+      <label class="c-checkbox"><input type="checkbox" name="week" value="thu" id="js__week--thu"><span class="icon"></span>Thu</label>
+      <label class="c-checkbox"><input type="checkbox" name="week" value="fri" id="js__week--fri"><span class="icon"></span>Fri</label>
+      <label class="c-checkbox"><input type="checkbox" name="week" value="sat" id="js__week--sat"><span class="icon"></span>Sat</label>
+    </div>
+
+    <div class="main__section clearfix">
+      <h2 class="main__section__ttl">View Count Down(minitue)</h2>
+      <input type="text"  name="###" value="" class="c-textarea l-clm-2" id="js__viewTime">
+      <label class="c-select l-clm-2">
+      <select name="example" id="js__viewInterval">
+        <option value="day">Every Day</option>
+        <option value="week">Every Week</option>
+        <option value="month">Every Month</option>
+      </select>
+      </label>
+    </div>
+
+    <div class="main__section clearfix">
+      <h2 class="main__section__ttl">Display Count Down</h2>
+      <div style="clear: both;">
+        <label class="c-checkbox"><input type="checkbox" name="###" value="enable" id="js__displayTimeFlag"><span class="icon"></span>Enable</label>
+      </div>
+    </div>
+
+    <div class="main__section">
+      <h2 class="main__section__ttl">Jump URL</h2>
+      <input type="text"  name="###" value="" class="c-textarea" id="js__jumpUrl">
+    </div>
+
+    <div class="main__section">
+      <h2 class="main__section__ttl">Delay</h2>
+      <input type="text" name="###" value="" class="c-textarea" id="js__delay">
+    </div>
+
+  <!-- /.main__Option --></div>
+
+<!-- /.main --></div>
+
+</div>
+
+<footer class="pageFooter">
+  <p class="pageFooter__copyright">&copy; 2017 kskg</p>
+<!--   <ul class="pageFooter__list">
+    <li><a href="#">twitter</a></li>
+    <li><a href="#">facebook</a></li>
+    <li><a href="#">Official Site</a></li>
+    <li><a href="#">FAQ</a></li>
+    <li><a href="#">Support</a></li>
+  </ul> -->
+</footer>
+
+<script src="../lib/jquery.js"></script>
+<script src="../lib/jquery-ui.js"></script>
+<script src="../js/options.js"></script>
+
+</body>
+</html>
