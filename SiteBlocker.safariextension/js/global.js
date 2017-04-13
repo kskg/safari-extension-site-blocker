@@ -5,7 +5,7 @@
 var $id = function(id){ return document.getElementById(id); };
 
 
-(function(){
+// (function(){
 
 
   var initialize = function(){
@@ -124,6 +124,15 @@ var $id = function(id){ return document.getElementById(id); };
         event.target.page.dispatchMessage('createStorage'); // to option
         break;
 
+      // from popover
+      case 'popop' :
+        // alert('done');
+        // var eee = event.message.value
+        // alert('done');
+        // var storageValue = storage.getValue();
+        // alert(storageValue[eee].name + 'test');
+        break;
+
       // from injecting start
       case 'checkUrlList' :
         var storageValue = storage.getValue();
@@ -170,8 +179,9 @@ var $id = function(id){ return document.getElementById(id); };
 
       // from injecting start
       case 'showPopoverURL' :
-        var pageURL = event.message;
-        safari.extension.popovers[0].contentWindow.setActivePageUrl(pageURL); // to popover
+        var pageUrl = event.message;
+        var storageValue = storage.getValue();
+        safari.extension.popovers[0].contentWindow.setActivePageUrl(pageUrl, storageValue); // to popover
         break;
 
       // from injectin end
@@ -188,11 +198,14 @@ var $id = function(id){ return document.getElementById(id); };
   safari.application.addEventListener('message', receiveMessage, false);
 
 
+
+
+
   initialize();
   // localStorage.removeItem('safariExtention');
 
 
-}());
+// }());
 
 
 /* Option

@@ -36,6 +36,15 @@ if (window.top === window){
         // document.getElementsByTagName('body').item(0).appendChild(element);
         break;
 
+      // from popover
+      case 'showMessage' :
+        var element = document.createElement('div');
+        element.id = 'injecting__url';
+        element.innerHTML = event.message;
+        // element.style.opacity = 0;
+        document.getElementsByTagName('body').item(0).appendChild(element);
+        break;
+
       default:
         break;
     }

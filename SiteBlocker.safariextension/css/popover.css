@@ -93,3 +93,42 @@ a:visited {
   margin-bottom: 0.7rem;
 }
 
+
+/* JS
+---------------------------------------------------------------------- */
+
+.js__added {
+  z-index: 9999;
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 1000px;
+  background-color: #e9e9e9;
+  text-align: center;
+  animation: js__added--is-ON 0.35s ease-out 0s 1 normal forwards;
+}
+
+@keyframes js__added--is-ON {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.js__added.is-ON {
+  display: block;
+}
+
+.js__added__ico {
+  margin-top: 22px;
+}
+
+.js__added__txt {
+  margin-top: 8px;
+}
+
+
+
+
