@@ -1,6 +1,6 @@
 # Safari Extension - Site Blocker（仮） 更新情報
 
-## 0.1.1
+## 0.2
 2017年4月13日（木）
 - Sourceディレクトリ名の変更
 - 更新情報用のファイルUPDATE.mdを追加
