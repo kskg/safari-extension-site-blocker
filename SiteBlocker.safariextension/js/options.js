@@ -27,8 +27,8 @@ var $id = function(id){ return document.getElementById(id); };
       initialize : function(){
         safari.self.tab.dispatchMessage('getStorage'); // to global
       },
-      create : function(){
-        safari.self.tab.dispatchMessage('createStorage'); // to global
+      create : function(listName){
+        safari.self.tab.dispatchMessage('createStorage', listName); // to global
       }
     };
   }());
@@ -270,7 +270,13 @@ var $id = function(id){ return document.getElementById(id); };
       var target = $id('js__side__list');
       var element = target.innerHTML;
       var sortID = listItem.length;
-      storage.create();
+
+      var promptMessage = 'Please New List Name';
+      var promptResult = prompt(promptMessage, 'New List');
+
+      if (promptResult === null){ return false; }
+
+      storage.create(promptResult);
       refreshMainContent();
       refreshSideContent();
 

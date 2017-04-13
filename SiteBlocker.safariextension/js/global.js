@@ -30,14 +30,14 @@ var $id = function(id){ return document.getElementById(id); };
       initialize : function(){
         value_ = JSON.parse(localStorage.safariExtention);
       },
-      create : function(){
+      create : function(listName){
         var storageID = localStorage.id;
         var thisID = parseInt(storageID, 10)+1;
         localStorage.id = thisID;
         var obj = {
           id : thisID,
           sortId : 1, // Unimplemented
-          name : 'New List',
+          name : listName ? listName : 'New List',
           runFlag : true,
           url : [],
           timeZone : ['0000-2400'],
@@ -120,7 +120,8 @@ var $id = function(id){ return document.getElementById(id); };
 
       // from option
       case 'createStorage' :
-        storage.create();
+        var listName = event.message;
+        storage.create(listName);
         event.target.page.dispatchMessage('createStorage'); // to option
         break;
 
