@@ -11,6 +11,12 @@
 <body>
 
 <div class="container">
+
+<div id="js__added" class="js__added">
+  <img class="js__added__ico" src="../img/popup_ico_done.svg" width="70" height="70" alt="Done">
+  <p id="js__added__txt"  class="js__added__txt"></p>
+</div>
+
 <div class="header clearfix">
   <h1 class="header__ttl">Site Blocker</h1>
   <a href="options.html" id="js__SettingOpen" class="header__btn"><img src="../img/popup_ico_setting.svg" width="18" height="18" alt="Settings"></a>
@@ -20,16 +26,17 @@
 <div class="blockDomain clearfix">
   <p class="blockDomain__ttl">Block Target Domain</p>
   <p class="blockDomain__url"><a href="#" id="js__ActivePageUrl">null</a></p>
-
   <div class="l-clm">
-  <label class="c-select l-clm-2">
-  <select name="example" id="">
-    <option value="">List 1（未実装）</option>
-    <option value="">List 2（未実装）</option>
-  </select>
-  </label>
-  <button type="submit" value="Add" class="c-button l-clm-2" id="js__btn--add">Add List</button>
+  <form name="addList">
+    <label class="c-select l-clm-2">
+    <select name="listName" id="js__select--listName">
+      <option value="">null</option>
+    </select>
+    </label>
+    <button type="button" value="Add" class="c-button l-clm-2" id="js__btn--add">Add List</button>
+  </form>
   </div>
+</div>
 
 </div>
 
