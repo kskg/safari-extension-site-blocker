@@ -80,7 +80,6 @@ a:visited {
 
 .blockDomain {
   padding: 10px 16px 8px;
-  /* border-bottom: solid 1px #d4d4d4; */
 }
 
 .blockDomain__ttl {
@@ -91,6 +90,10 @@ a:visited {
 
 .blockDomain__url {
   margin-bottom: 0.7rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 285px;
 }
 
 
