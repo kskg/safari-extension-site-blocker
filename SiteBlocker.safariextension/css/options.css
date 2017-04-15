@@ -149,8 +149,11 @@ body {
 }
 
 .side__list__item:hover {
-  background: #dfe0e1;
   cursor: pointer;
+  background: #dfe0e1;
+  background-image: url(../img/ico_move.png);
+  background-repeat: no-repeat;
+  background-position: top 13px right 11px;
 }
 
 .side__list__item.is-ON {

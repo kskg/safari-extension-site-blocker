@@ -14,17 +14,16 @@ Site Blocker（仮）はMacOSのSafari機能拡張です。
 - アクセスの制限が実行されるとオワタくんが登場します＼(^o^)／
 
 
-## スクリーンショット
-![Capture](https://raw.githubusercontent.com/kskg/SiteBlocker/master/capture.png)
-
-
 ## バージョン
-0.3
+0.4
 
 
 ## 動作環境
 MacOS Safari 10.1〜  
 ※上記を基準に開発しているため、それ以外の上位・下位バージョンでの動作は不明
+
+## スクリーンショット
+![Capture](https://raw.githubusercontent.com/kskg/SiteBlocker/master/capture.png)
 
 
 ## インストール方法
