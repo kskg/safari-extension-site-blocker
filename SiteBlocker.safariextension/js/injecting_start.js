@@ -28,7 +28,8 @@ if (window.top === window){
 
         // from popover
         case 'requestURL' :
-          var pageURL = location.hostname;
+          var href = location.href;
+          var pageURL = href.match(/https?:\/\/[^\/]+\//);
           safari.self.tab.dispatchMessage('showPopoverURL', pageURL); // to global
           break;
 
