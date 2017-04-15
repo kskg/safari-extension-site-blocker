@@ -301,6 +301,10 @@ var $id = function(id){ return document.getElementById(id); };
     var submitDeleteButton = function(){
       var currentID = getCurrentID();
       var storageValue = storage.getValue();
+      var listName = storageValue[currentID].name;
+
+      var confirmDeleteList = confirm('Delete "' + listName + '"?');
+      if (confirmDeleteList === false){ return false; }
 
       storageValue.splice(currentID, 1);
 
