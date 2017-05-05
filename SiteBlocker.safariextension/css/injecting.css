@@ -14,7 +14,7 @@
 #injecting__mask {
   display: block;
   position: fixed;
-  z-index: 9999999999;
+  z-index: 9999999999 !important;
   opacity: 1;
   top: 0;
   left: 0;
