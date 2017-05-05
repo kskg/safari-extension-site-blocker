@@ -152,6 +152,7 @@ var $id = function(id){ return document.getElementById(id); };
       refreshMainContent(targetID);
       removeClass();
       this.classList.add('is-ON');
+      // scrollTo(0, 0);
     };
 
     var removeClass = function(){
@@ -194,11 +195,11 @@ var $id = function(id){ return document.getElementById(id); };
     storageValue[id].week.thu = $id('js__week--thu').checked;
     storageValue[id].week.fri = $id('js__week--fri').checked;
     storageValue[id].week.sat = $id('js__week--sat').checked;
-    storageValue[id].viewTime = $id('js__viewTime').value;
+    storageValue[id].viewTime = parseInt($id('js__viewTime').value, 10);
     storageValue[id].viewInterval = $id('js__viewInterval').value;
     storageValue[id].displayTimeFlag = $id('js__displayTimeFlag').checked;
     storageValue[id].jumpUrl = $id('js__jumpUrl').value;
-    storageValue[id].delay = $id('js__delay').value;
+    storageValue[id].delay = parseInt($id('js__delay').value, 10);
 
     storage.setValue(storageValue);
   };
