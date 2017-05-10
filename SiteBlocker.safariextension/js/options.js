@@ -49,7 +49,6 @@ var $id = function(id){ return document.getElementById(id); };
         storage.initialize();
         refreshMainContent();
         refreshSideContent();
-
         var message = 'Create New List! :D';
         showMessage(message);
         break;
@@ -107,11 +106,15 @@ var $id = function(id){ return document.getElementById(id); };
     $id('js__week--thu').checked = storageValue[id].week.thu;
     $id('js__week--fri').checked = storageValue[id].week.fri;
     $id('js__week--sat').checked = storageValue[id].week.sat;
+    $id('js__blockType').value = storageValue[id].blockType;
+    changeBlockType();
     $id('js__viewTime').value = storageValue[id].viewTime;
     $id('js__viewInterval').value = storageValue[id].viewInterval;
     $id('js__displayTimeFlag').checked = storageValue[id].displayTimeFlag;
     $id('js__jumpUrl').value = storageValue[id].jumpUrl;
     $id('js__delay').value = storageValue[id].delay;
+
+    $id('js__main').scrollTo(0, 0);
   };
 
 
@@ -195,6 +198,7 @@ var $id = function(id){ return document.getElementById(id); };
     storageValue[id].week.thu = $id('js__week--thu').checked;
     storageValue[id].week.fri = $id('js__week--fri').checked;
     storageValue[id].week.sat = $id('js__week--sat').checked;
+    storageValue[id].blockType = $id('js__blockType').value;
     storageValue[id].viewTime = parseInt($id('js__viewTime').value, 10);
     storageValue[id].viewInterval = $id('js__viewInterval').value;
     storageValue[id].displayTimeFlag = $id('js__displayTimeFlag').checked;
@@ -287,15 +291,16 @@ var $id = function(id){ return document.getElementById(id); };
   }());
 
 
-  (function(){
+  // (function(){
     var submitSaveButton = function(){
       saveSettings();
 
       var message = 'Save Successful :)';
       showMessage(message);
+      return false;
     }
     $id('js__btn--save').addEventListener('click', submitSaveButton, false);
-  }());
+  // }());
 
 
   (function(){
@@ -319,6 +324,44 @@ var $id = function(id){ return document.getElementById(id); };
     }
     $id('js__btn--delete').addEventListener('click', submitDeleteButton, false);
   }());
+
+
+  // ブロックタイプセレクト
+  var changeBlockType = function(event){
+    var formValue = document.form.blockType.value;
+    var switchBlockTypeOption = function(){
+      $id('js__jumpUrl').parentNode.classList.add('is-OFF');
+      $id('js__viewTime').parentNode.classList.add('is-OFF');
+      $id('js__displayTimeFlag').parentNode.parentNode.classList.add('is-OFF');
+      $id('js__delay').parentNode.classList.add('is-OFF');
+    }
+
+    switch (formValue){
+      // すぐにブロック
+      case 'immediately':
+        switchBlockTypeOption();
+        $id('js__jumpUrl').parentNode.classList.remove('is-OFF');
+        break;
+
+      // 時間が経つと閲覧可能
+      case 'after':
+        switchBlockTypeOption();
+        $id('js__delay').parentNode.classList.remove('is-OFF');
+        break;
+
+      // 指定した時間だけ閲覧可能
+      case 'countdown':
+        switchBlockTypeOption();
+        $id('js__viewTime').parentNode.classList.remove('is-OFF');
+        $id('js__displayTimeFlag').parentNode.parentNode.classList.remove('is-OFF');
+        break;
+
+      default:
+        break;
+    }
+  }
+  $id('js__blockType').addEventListener('change', changeBlockType, false);
+  changeBlockType();
 
 
   // リストソート
@@ -349,29 +392,26 @@ var $id = function(id){ return document.getElementById(id); };
   initialize();
 
 
-
-
-
 }());
 
 
-/* Debug Option
+/* Debug
 ---------------------------------------------------------------------- */
 
-// function godSet(){
-//   localStorage.removeItem('safariExtention');
-//   var godObj = [{"id":1,"sortId":1,"name":"Default","runFlag":true,"url":["https://qiita.com/"],"timeZone":["0000-2200"],"week":{"sun":false,"mon":true,"tue":true,"wed":true,"thu":false,"fri":true,"sat":true},"viewTime":"0","viewInterval":"month","displayTimeFlag":true,"jumpUrl":"","delay":"30"},{"id":1,"sortId":1,"name":"SNS","runFlag":true,"url":["https://twitter.com/","https://facebook.com/"],"timeZone":["0000-2400","0000-2400"],"week":{"sun":false,"mon":false,"tue":false,"wed":false,"thu":false,"fri":false,"sat":false},"viewTime":"10","viewInterval":"week","displayTimeFlag":false,"jumpUrl":"https://www.google.com/","delay":"10"},{"id":1,"sortId":1,"name":"Search","runFlag":true,"url":["https://www.google.com/","https://www.yahoo.co.jp/"],"timeZone":["0000-2400"],"week":{"sun":true,"mon":true,"tue":true,"wed":true,"thu":true,"fri":true,"sat":true},"viewTime":"0","viewInterval":"day","displayTimeFlag":true,"jumpUrl":"","delay":"0"}]
-// ;
-//   localStorage.safariExtention = JSON.stringify(godObj);
-//   location.reload();
-// }
+function debugSet(){
+  // var jsonData = 'jsonData';
+  // localStorage.removeItem('safariExtention');
+  // localStorage.safariExtention = JSON.stringify(jsonData);
+  // location.reload();
+}
 
-// function godClear(){
-//   localStorage.removeItem('safariExtention');
-//   location.reload();
-// }
+function debugClear(){
+  // var confirmDeleteList = confirm('Delete localStorage?');
+  // if (confirmDeleteList === false){ return false; }
+  // localStorage.removeItem('safariExtention');
+  // location.reload();
+}
 
-// function godAlert(){
-//   alert(localStorage.safariExtention)
-// }
+function debugShow(){
+}
 

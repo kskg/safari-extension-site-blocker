@@ -14,7 +14,7 @@ Site Blocker（仮）はMacOSのSafari機能拡張です。
 
 
 ## バージョン
-0.5
+0.6
 
 
 ## 動作環境
@@ -41,7 +41,7 @@ MacOS Safari 10.1〜
 
 
 ## ライセンス
-MIT Licence
+GNU General Public License v3.0
 
 
 ## 作者

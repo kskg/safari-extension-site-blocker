@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../css/options.css">
 </head>
 <body>
+<form name="form">
 
 <div class="p-message" id="js__message"></div>
 
@@ -36,8 +37,8 @@
     <div class="main__section">
       <h2 class="main__section__ttl">URL List</h2>
       <textarea name="blockurl" class="c-textarea c-textarea--multiLine" id="js__text--urlList"></textarea>
-      <button type="submit" value="Save" class="c-button" id="js__btn--save">save</button>
-      <button type="submit" value="Delete" class="c-button" id="js__btn--delete">delete</button>
+      <button type="button" value="Save" class="c-button" id="js__btn--save">save</button>
+      <button type="button" value="Delete" class="c-button" id="js__btn--delete">delete</button>
     </div>
   <!-- /.main-Left --></div>
 
@@ -103,7 +104,23 @@
       <label class="c-checkbox"><input type="checkbox" name="week" value="sat" id="js__week--sat"><span class="icon"></span>Sat</label>
     </div>
 
-    <div class="main__section clearfix" style="display: none;">
+    <div class="main__section">
+      <h2 class="main__section__ttl">Select Block Type</h2>
+      <label class="c-select" style="clear: both;">
+      <select name="blockType" id="js__blockType">
+        <option value="immediately">すぐにブロック</option>
+        <option value="after">時間が経つと閲覧可能</option>
+        <!-- <option value="countdown">指定した時間だけ閲覧可能</option> -->
+      </select>
+      </label>
+    </div>
+
+    <div class="main__section noBorder">
+      <h2 class="main__section__ttl">Jump URL</h2>
+      <input type="text"  name="###" value="" class="c-textarea" id="js__jumpUrl">
+    </div>
+
+    <div class="main__section clearfix">
       <h2 class="main__section__ttl">View Count Down(minitue)</h2>
       <input type="text"  name="###" value="" class="c-textarea l-clm-2" id="js__viewTime">
       <label class="c-select l-clm-2">
@@ -115,19 +132,12 @@
       </label>
     </div>
 
-    <div class="main__section clearfix" style="display: none;">
+    <div class="main__section noBorder clearfix">
       <h2 class="main__section__ttl">Display Count Down</h2>
-      <div style="clear: both;">
-        <label class="c-checkbox"><input type="checkbox" name="###" value="enable" id="js__displayTimeFlag"><span class="icon"></span>Enable</label>
-      </div>
+      <label class="c-checkbox"><input type="checkbox" name="###" value="enable" id="js__displayTimeFlag"><span class="icon"></span>Enable</label>
     </div>
 
-    <div class="main__section">
-      <h2 class="main__section__ttl">Jump URL</h2>
-      <input type="text"  name="###" value="" class="c-textarea" id="js__jumpUrl">
-    </div>
-
-    <div class="main__section">
+    <div class="main__section noBorder">
       <h2 class="main__section__ttl">Delay</h2>
       <input type="text" name="###" value="" class="c-textarea" id="js__delay">
     </div>
@@ -140,14 +150,16 @@
 
 <footer class="pageFooter">
   <p class="pageFooter__copyright">&copy; 2017 kskg</p>
-<!--   <ul class="pageFooter__list">
-    <li><a href="#">twitter</a></li>
-    <li><a href="#">facebook</a></li>
-    <li><a href="#">Official Site</a></li>
-    <li><a href="#">FAQ</a></li>
-    <li><a href="#">Support</a></li>
-  </ul> -->
+  <ul class="pageFooter__list">
+    <!-- <li><a href="#">twitter</a></li> -->
+    <!-- <li><a href="#">facebook</a></li> -->
+    <!-- <li><a href="#">Official Site</a></li> -->
+    <!-- <li><a href="#">FAQ</a></li> -->
+    <!-- <li><a href="#">Support</a></li> -->
+  </ul>
 </footer>
+
+</form>
 
 <script src="../lib/jquery.js"></script>
 <script src="../lib/jquery-ui.js"></script>
