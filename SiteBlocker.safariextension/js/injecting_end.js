@@ -2,7 +2,7 @@
 ---------------------------------------------------------------------- */
 
 // Replace 'document.getElementByID, document.getElementsByTagName'
-var $id = function(id){ return document.getElementById(id); };
+var $id  = function(id){ return document.getElementById(id); };
 var $tag = function(tag){ return document.getElementsByTagName(tag) };
 
 
@@ -31,11 +31,11 @@ if (window.top === window){
 
       // from global
       case 'showListData' :
-        var element = document.createElement('div');
-        element.id = 'injecting__url';
-        element.innerHTML = event.message;
-        element.style.opacity = 0;
-        $tag('body').item(0).appendChild(element);
+        // var element = document.createElement('div');
+        // element.id = 'injecting__url';
+        // element.innerHTML = event.message;
+        // element.style.opacity = 0;
+        // $tag('body').item(0).appendChild(element);
         break;
 
 
@@ -77,10 +77,15 @@ if (window.top === window){
 
       // from global
       case 'jumpPage' :
+        document.location = event.message;
+        break;
+
+
+      // from global
+      case 'jumpDummyPage' :
         // var htmlPath = 'html/dummy.html';
         // var jumpURL = safari.extension.baseURI + htmlPath;
         // document.location = jumpURL;
-        document.location = event.message;
         break;
 
 
@@ -91,7 +96,7 @@ if (window.top === window){
 
       // from global
       case 'consoleLog' :
-        console.log(event.message);
+        console.log(event.message); // e.g.) event.target.page.dispatchMessage('consoleLog', value);
         break;
 
 
@@ -103,17 +108,17 @@ if (window.top === window){
 
 
   // keydown 'D' show URL
-  var keyDown = function(event){
-    if (68 === event.keyCode){
-      var elementOpacity = parseInt($id('injecting__url').style.opacity, 10);
-      if (0 === elementOpacity){
-        $id('injecting__url').style.opacity = 1;
-      } else {
-        $id('injecting__url').style.opacity = 0;
-      }
-    }
-  };
-  document.addEventListener('keydown', keyDown);
+  // var keyDown = function(event){
+  //   if (68 === event.keyCode){
+  //     var elementOpacity = parseInt($id('injecting__url').style.opacity, 10);
+  //     if (0 === elementOpacity){
+  //       $id('injecting__url').style.opacity = 1;
+  //     } else {
+  //       $id('injecting__url').style.opacity = 0;
+  //     }
+  //   }
+  // };
+  // document.addEventListener('keydown', keyDown);
 
 
 }

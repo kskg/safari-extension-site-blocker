@@ -33,17 +33,18 @@ var storage = (function(){
       localStorage.id = thisID;
       var obj = {
         id : thisID,
-        sortId : 1, // Unimplemented
+        sortId : 1,
         name : listName ? listName : 'New List',
         runFlag : true,
         url : [],
         timeZone : ['0000-2400'],
         week : {sun : true, mon : true, tue : true, wed : true, thu : true, fri : true, sat : true},
-        viewTime : 0, // Unimplemented
-        viewInterval : 'day', // Unimplemented
-        displayTimeFlag : true, // Unimplemented
-        jumpUrl : '', // Unimplemented
-        delay : 0
+        blockType : 'immediately', // immediately, after, countdown
+        viewTime : 0,
+        viewInterval : 'day',
+        displayTimeFlag : true,
+        jumpUrl : '',
+        delay : 10
       };
       value_.unshift(obj);
     }
@@ -165,10 +166,21 @@ var receiveMessage = function(event){
         for (var j = 0, lenj = target.url.length; j < lenj; j++){
           var targetURL = target.url[j].replace(/.*\/\/|\/.*/g, '').split(/\r\n|\r|\n/).toString();
           if (pageURL === targetURL){
-            if ('' !== jumpUrl){
-              event.target.page.dispatchMessage('jumpPage', jumpUrl); // to injecting end
-            } else {
-              event.target.page.dispatchMessage('stopPageLoad', delaySecond); // to injecting end
+            switch (target.blockType) {
+              case 'immediately' :
+                if ('' === jumpUrl){
+                  event.target.page.dispatchMessage('stopPageLoad'); // to injecting end
+                } else {
+                  event.target.page.dispatchMessage('jumpPage', jumpUrl); // to injecting end
+                }
+                break;
+              case 'after' :
+                event.target.page.dispatchMessage('stopPageLoad', delaySecond); // to injecting end
+                break;
+              case 'countdown' :
+                break;
+              default :
+                break;
             }
             loopFlag = true;
             break;
@@ -200,8 +212,8 @@ var receiveMessage = function(event){
 safari.application.addEventListener('message', receiveMessage, false);
 
 
-initialize();
 // localStorage.removeItem('safariExtention');
+initialize();
 
 
 /* Option
