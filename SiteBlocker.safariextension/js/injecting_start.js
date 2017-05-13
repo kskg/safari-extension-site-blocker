@@ -2,21 +2,21 @@
 ---------------------------------------------------------------------- */
 
 // Replace 'document.getElementByID'
-var $id = function(id){ return document.getElementById(id); };
+var $id = function(id) { return document.getElementById(id); };
 
 
-if (window.top === window){
+if (window.top === window) {
 
 
-  // (function(){
+  // (function() {
   //   var pageURL = location.hostname;
   //   safari.self.tab.dispatchMessage('checkUrlList', pageURL); // to global
   // }());
 
 
-  // (function(){
-  //   var receiveMessage = function(event){
-  //     switch (event.name){
+  // (function() {
+  //   var receiveMessage = function(event) {
+  //     switch (event.name) {
 
   //       // // from global
   //       // case 'stopPageLoad' :

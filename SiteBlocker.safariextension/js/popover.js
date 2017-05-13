@@ -2,23 +2,23 @@
 ---------------------------------------------------------------------- */
 
 // Replace 'document.getElementByID'
-var $id = function(id){ return document.getElementById(id); };
+var $id = function(id) { return document.getElementById(id); };
 
 
-var showPopover = function(){
+var showPopover = function() {
   safari.application.activeBrowserWindow.activeTab.page.dispatchMessage('requestURL'); // to injecting start
 };
 safari.application.addEventListener('popover', showPopover, true);
 
 
 // from Global
-var setActivePageUrl = function(pageUrl, storageValue){
+var setActivePageUrl = function(pageUrl, storageValue) {
   $id('js__ActivePageUrl').innerHTML = pageUrl;
 
   var target = $id('js__select--listName');
   target.innerHTML = '';
 
-  for (var i = 0; i < storageValue.length; i++){
+  for (var i = 0; i < storageValue.length; i++) {
     var element = target.innerHTML;
     target.innerHTML = element + '<option value="' + i + '">' + storageValue[i].name + '</option>';
   };
@@ -29,7 +29,7 @@ var setActivePageUrl = function(pageUrl, storageValue){
 
 
 // add button
-var submitAddURL = function(event){
+var submitAddURL = function(event) {
   var pageURL = $id('js__ActivePageUrl').innerHTML;
   var id = document.addList.listName.value;
 
@@ -45,14 +45,14 @@ var submitAddURL = function(event){
 $id('js__btn--add').addEventListener('click', submitAddURL, false);
 
 
-var openSettings = function(){
+var openSettings = function() {
   var newTab = safari.application.activeBrowserWindow.openTab();
   safari.self.hide();
 }
 $id('js__SettingOpen').addEventListener('click', openSettings, false);
 
 
-var openGlobal = function(){
+var openGlobal = function() {
   var newTab = safari.application.activeBrowserWindow.openTab();
   safari.self.hide();
 }

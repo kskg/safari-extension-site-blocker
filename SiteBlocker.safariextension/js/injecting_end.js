@@ -2,14 +2,14 @@
 ---------------------------------------------------------------------- */
 
 // Replace 'document.getElementByID, document.getElementsByTagName'
-var $id  = function(id){ return document.getElementById(id); };
-var $tag = function(tag){ return document.getElementsByTagName(tag) };
+var $id  = function(id) { return document.getElementById(id); };
+var $tag = function(tag) { return document.getElementsByTagName(tag) };
 
 
-if (window.top === window){
+if (window.top === window) {
 
 
-  (function(){
+  (function() {
     var pageURL = location.hostname;
     safari.self.tab.dispatchMessage('checkUrlList', pageURL); // to global
   }());
@@ -18,8 +18,8 @@ if (window.top === window){
   safari.self.tab.dispatchMessage('requestAlertValue'); // to global
 
 
-  var receiveMessage = function(event){
-    switch (event.name){
+  var receiveMessage = function(event) {
+    switch (event.name) {
 
       // from popover
       case 'requestURL' :
@@ -60,8 +60,8 @@ if (window.top === window){
         $tag('body').item(0).appendChild(element);
 
         if (0 !== delay){
-          var hideMask = function(){ element.parentNode.removeChild(element); }
-          var countDown = function(){
+          var hideMask = function() { element.parentNode.removeChild(element); }
+          var countDown = function() {
             delayValue--;
             element.innerHTML = delayValue;
           }
@@ -108,10 +108,10 @@ if (window.top === window){
 
 
   // keydown 'D' show URL
-  // var keyDown = function(event){
-  //   if (68 === event.keyCode){
+  // var keyDown = function(event) {
+  //   if (68 === event.keyCode) {
   //     var elementOpacity = parseInt($id('injecting__url').style.opacity, 10);
-  //     if (0 === elementOpacity){
+  //     if (0 === elementOpacity) {
   //       $id('injecting__url').style.opacity = 1;
   //     } else {
   //       $id('injecting__url').style.opacity = 0;

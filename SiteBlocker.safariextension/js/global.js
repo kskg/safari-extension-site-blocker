@@ -2,11 +2,11 @@
 ---------------------------------------------------------------------- */
 
 // Replace 'document.getElementByID'
-var $id = function(id){ return document.getElementById(id); };
+var $id = function(id) { return document.getElementById(id); };
 
 
-var initialize = function(){
-  if (undefined === localStorage.safariExtention){
+var initialize = function() {
+  if (undefined === localStorage.safariExtention) {
     localStorage.id = 0;
     storage.create();
   }
@@ -14,20 +14,20 @@ var initialize = function(){
 };
 
 
-var storage = (function(){
+var storage = (function() {
   var value_ = [];
   return {
-    getValue : function(){
+    getValue : function() {
       return value_;
     },
-    setValue : function(obj){
+    setValue : function(obj) {
       value_ = obj;
       localStorage.safariExtention = JSON.stringify(value_);
     },
-    initialize : function(){
+    initialize : function() {
       value_ = JSON.parse(localStorage.safariExtention);
     },
-    create : function(listName){
+    create : function(listName) {
       var storageID = localStorage.id;
       var thisID = parseInt(storageID, 10)+1;
       localStorage.id = thisID;
@@ -38,7 +38,7 @@ var storage = (function(){
         runFlag : true,
         url : [],
         timeZone : ['0000-2400'],
-        week : {sun : true, mon : true, tue : true, wed : true, thu : true, fri : true, sat : true},
+        week : { sun : true, mon : true, tue : true, wed : true, thu : true, fri : true, sat : true },
         blockType : 'immediately', // immediately, after, countdown
         viewTime : 0,
         viewInterval : 'day',
@@ -52,7 +52,7 @@ var storage = (function(){
 }());
 
 
-var now = (function(){
+var now = (function() {
   var dateObj = new Date();
   var weekDayList = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
@@ -67,7 +67,7 @@ var now = (function(){
   return {
     getTime : parseInt(hour +''+ minute, 10),
     getWeek : weekDay,
-    getTodaysWeek : function(obj){
+    getTodaysWeek : function(obj) {
       // alert(JSON.stringify(obj));
       switch (this.getWeek) {
         case 'sun' :
@@ -101,8 +101,8 @@ var now = (function(){
 // alert(now.getWeek);
 
 
-var receiveMessage = function(event){
-  switch (event.name){
+var receiveMessage = function(event) {
+  switch (event.name) {
 
     // from option
     case 'setStorage' :
@@ -126,7 +126,7 @@ var receiveMessage = function(event){
     // from injecting start
     case 'checkUrlList' :
       var storageValue = storage.getValue();
-      if ('' == storageValue){ break; }
+      if ('' == storageValue) { break; }
 
       // flag judgment
       var targetID = [];
@@ -135,13 +135,13 @@ var receiveMessage = function(event){
       var startTime;
       var endTime;
       var todaysWeek
-      for (var i = 0, len = storageValue.length; i < len; i++){
-        if (true === storageValue[i].runFlag){
+      for (var i = 0, len = storageValue.length; i < len; i++) {
+        if (true === storageValue[i].runFlag) {
           todaysWeek = now.getTodaysWeek(storageValue[i]);
-          if (true === todaysWeek){
+          if (true === todaysWeek) {
             nowTime = now.getTime;
 
-            for (var j = 0, lenj = storageValue[i].timeZone.length; j < lenj; j++){
+            for (var j = 0, lenj = storageValue[i].timeZone.length; j < lenj; j++) {
               startTime = parseInt(storageValue[i].timeZone[j].substring(0,4), 10);
               endTime = parseInt(storageValue[i].timeZone[j].substring(5,9), 10);
               if (startTime < nowTime && endTime > nowTime) {
@@ -157,18 +157,18 @@ var receiveMessage = function(event){
       // jump
       var pageURL = event.message;
 
-      for (var i = 0, len = targetID.length; i < len; i++){
+      for (var i = 0, len = targetID.length; i < len; i++) {
         var target = storageValue[targetID[i]];
         var jumpUrl = target.jumpUrl;
         var delaySecond = target.delay * 1000;
         var loopFlag = false;
 
-        for (var j = 0, lenj = target.url.length; j < lenj; j++){
+        for (var j = 0, lenj = target.url.length; j < lenj; j++) {
           var targetURL = target.url[j].replace(/.*\/\/|\/.*/g, '').split(/\r\n|\r|\n/).toString();
-          if (pageURL === targetURL){
+          if (pageURL === targetURL) {
             switch (target.blockType) {
               case 'immediately' :
-                if ('' === jumpUrl){
+                if ('' === jumpUrl) {
                   event.target.page.dispatchMessage('stopPageLoad'); // to injecting end
                 } else {
                   event.target.page.dispatchMessage('jumpPage', jumpUrl); // to injecting end
@@ -186,7 +186,7 @@ var receiveMessage = function(event){
             break;
           }
         }
-        if (true === loopFlag){ break; }
+        if (true === loopFlag) { break; }
       }
 
       break;
@@ -223,8 +223,8 @@ initialize();
 
   safari.extension.settings.openSettingsSafariCheckbox = false;
 
-  var openSettings = function(event){
-    if (event.key === 'openSettingsSafariCheckbox'){
+  var openSettings = function(event) {
+    if (event.key === 'openSettingsSafariCheckbox') {
       var htmlPath = 'html/options.html';
       var newTab = safari.application.activeBrowserWindow.openTab();
       newTab.url = safari.extension.baseURI + htmlPath;

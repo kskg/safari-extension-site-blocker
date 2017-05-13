@@ -2,40 +2,40 @@
 ---------------------------------------------------------------------- */
 
 // Replace 'document.getElementByID'
-var $id = function(id){ return document.getElementById(id); };
+var $id = function(id) { return document.getElementById(id); };
 
 
-(function(){
+(function() {
 
 
-  var initialize = function(){
+  var initialize = function() {
     storage.initialize();
     sortableList();
   };
 
 
-  var storage = (function(){
+  var storage = (function() {
     var value_ = [];
     return {
-      getValue : function(){
+      getValue : function() {
         return value_;
       },
-      setValue : function(obj){
+      setValue : function(obj) {
         value_ = obj;
         safari.self.tab.dispatchMessage('setStorage', value_); // to global
       },
-      initialize : function(){
+      initialize : function() {
         safari.self.tab.dispatchMessage('getStorage'); // to global
       },
-      create : function(listName){
+      create : function(listName) {
         safari.self.tab.dispatchMessage('createStorage', listName); // to global
       }
     };
   }());
 
 
-  var receiveMessage = function(event){
-    switch (event.name){
+  var receiveMessage = function(event) {
+    switch (event.name) {
 
       // from global
       case 'setStorage' :
@@ -60,11 +60,11 @@ var $id = function(id){ return document.getElementById(id); };
   safari.self.addEventListener('message', receiveMessage, false);
 
 
-  var getCurrentID = function(){
+  var getCurrentID = function() {
     var listItem = $id('js__side__list').children;
     var target = $id('js__side__list').getElementsByClassName('is-ON');
-    for (var i = 0, len = listItem.length; i < len; i++){
-      if (target.item(0) === listItem[i]){
+    for (var i = 0, len = listItem.length; i < len; i++) {
+      if (target.item(0) === listItem[i]) {
         var index = i ;
         break;
       };
@@ -73,25 +73,25 @@ var $id = function(id){ return document.getElementById(id); };
   };
 
 
-  var showMessage = function(message){
+  var showMessage = function(message) {
     var target = $id('js__message');
     target.innerHTML = message;
     target.classList.add('is-ON');
-    setTimeout(function(){
+    setTimeout(function() {
       target.classList.remove('is-ON');
     }, 3500);
   };
 
 
-  var refreshMainContent = function(listID){
+  var refreshMainContent = function(listID) {
     var id = listID;
-    if (undefined === id){ var id = 0; }
+    if (undefined === id) { var id = 0; }
 
     var storageValue = storage.getValue();
 
     $id('js__name').innerHTML = storageValue[id].name;
     $id('js__text--urlList').value = storageValue[id].url.join('\n');
-    if (true === storageValue[id].runFlag){
+    if (true === storageValue[id].runFlag) {
       $id('js__runFlag--on').checked = true;
       $id('js__main').classList.remove('is-OFF');
     } else {
@@ -118,13 +118,13 @@ var $id = function(id){ return document.getElementById(id); };
   };
 
 
-  var refreshSideContent = function(){
+  var refreshSideContent = function() {
     resetSideContent();
     addSideContentClickEvent();
   };
 
 
-  var resetSideContent = function(){
+  var resetSideContent = function() {
     var target = $id('js__side__list');
     target.innerHTML = '';
 
@@ -132,13 +132,13 @@ var $id = function(id){ return document.getElementById(id); };
     var listItem = $id('js__side__list').children;
 
     // insert side list
-    for (var i = 0; i < storageValue.length; i++){
+    for (var i = 0; i < storageValue.length; i++) {
       var element = target.innerHTML;
       var name = storageValue[i].name;
       var sortId = i;
       target.innerHTML = element + '<li class="side__list__item" data-sortID="' + sortId + '">' + name + '</li>';
 
-      if(!storageValue[i].runFlag){
+      if(!storageValue[i].runFlag) {
         listItem[i].classList.add('is-Disable');
       }
     };
@@ -147,10 +147,10 @@ var $id = function(id){ return document.getElementById(id); };
   };
 
 
-  var addSideContentClickEvent = function(){
+  var addSideContentClickEvent = function() {
     var listItem = $id('js__side__list').children;
 
-    var event = function(){
+    var event = function() {
       var targetID = this.getAttribute('data-sortID');
       refreshMainContent(targetID);
       removeClass();
@@ -158,34 +158,34 @@ var $id = function(id){ return document.getElementById(id); };
       // scrollTo(0, 0);
     };
 
-    var removeClass = function(){
-      for (var i = 0, len = listItem.length; i < len; i++){
+    var removeClass = function() {
+      for (var i = 0, len = listItem.length; i < len; i++) {
         listItem[i].classList.remove('is-ON');
       };
     };
 
-    for (var i = 0, len = listItem.length; i < len; i++){
+    for (var i = 0, len = listItem.length; i < len; i++) {
       listItem[i].addEventListener('click', event, false);
     };
   };
 
 
-  var refreshSideContentSortId = function(){
+  var refreshSideContentSortId = function() {
     var listItem = $id('js__side__list').children;
-    for (var i = 0, len = listItem.length; i < len; i++){
+    for (var i = 0, len = listItem.length; i < len; i++) {
       listItem[i].setAttribute('data-sortID',i)
     };
   };
 
 
-  var saveSettings = function(){
+  var saveSettings = function() {
     var id = getCurrentID();
     var storageValue = storage.getValue();
 
     // set value
     storageValue[id].name = $id('js__name').innerHTML;
     storageValue[id].url = $id('js__text--urlList').value.split(/\r\n|\r|\n/);
-    if (true === storageValue[id].runFlag){
+    if (true === storageValue[id].runFlag) {
       storageValue[id].runFlag = true;
     } else {
       storageValue[id].runFlag = false;
@@ -209,15 +209,15 @@ var $id = function(id){ return document.getElementById(id); };
   };
 
 
-  (function(){
-    var editListName = function(){
+  (function() {
+    var editListName = function() {
       var target = $id('js__name');
       var listName = target.innerHTML;
 
       var promptMessage = 'Edit List Name';
       var promptResult = prompt(promptMessage, listName);
 
-      if (promptResult === null){ return false; }
+      if (promptResult === null) { return false; }
 
       var id = getCurrentID();
       var listItem = $id('js__side__list').children;
@@ -236,8 +236,8 @@ var $id = function(id){ return document.getElementById(id); };
   }());
 
 
-  (function(){
-    var changeRunFlagIsOn = function(){
+  (function() {
+    var changeRunFlagIsOn = function() {
       var id = getCurrentID();
       var mainContent = $id('js__main');
       var listItem = $id('js__side__list').children;
@@ -252,8 +252,8 @@ var $id = function(id){ return document.getElementById(id); };
   }());
 
 
-  (function(){
-    var changeRunFlagIsOff = function(){
+  (function() {
+    var changeRunFlagIsOff = function() {
       var id = getCurrentID();
       var mainContent = $id('js__main');
       var listItem = $id('js__side__list').children;
@@ -269,8 +269,8 @@ var $id = function(id){ return document.getElementById(id); };
   }());
 
 
-  (function(){
-    var submitAddNewListButton = function(){
+  (function() {
+    var submitAddNewListButton = function() {
       var listItem = $id('js__side__list').children;
       var target = $id('js__side__list');
       var element = target.innerHTML;
@@ -279,7 +279,7 @@ var $id = function(id){ return document.getElementById(id); };
       var promptMessage = 'Please New List Name';
       var promptResult = prompt(promptMessage, 'New List');
 
-      if (promptResult === null){ return false; }
+      if (promptResult === null) { return false; }
 
       storage.create(promptResult);
       refreshMainContent();
@@ -291,26 +291,24 @@ var $id = function(id){ return document.getElementById(id); };
   }());
 
 
-  // (function(){
-    var submitSaveButton = function(){
-      saveSettings();
+  var submitSaveButton = function() {
+    saveSettings();
 
-      var message = 'Save Successful :)';
-      showMessage(message);
-      return false;
-    }
-    $id('js__btn--save').addEventListener('click', submitSaveButton, false);
-  // }());
+    var message = 'Save Successful :)';
+    showMessage(message);
+    return false;
+  }
+  $id('js__btn--save').addEventListener('click', submitSaveButton, false);
 
 
-  (function(){
-    var submitDeleteButton = function(){
+  (function() {
+    var submitDeleteButton = function() {
       var currentID = getCurrentID();
       var storageValue = storage.getValue();
       var listName = storageValue[currentID].name;
 
       var confirmDeleteList = confirm('Delete "' + listName + '"?');
-      if (confirmDeleteList === false){ return false; }
+      if (confirmDeleteList === false) { return false; }
 
       storageValue.splice(currentID, 1);
 
@@ -327,16 +325,16 @@ var $id = function(id){ return document.getElementById(id); };
 
 
   // ブロックタイプセレクト
-  var changeBlockType = function(event){
+  var changeBlockType = function(event) {
     var formValue = document.form.blockType.value;
-    var switchBlockTypeOption = function(){
+    var switchBlockTypeOption = function() {
       $id('js__jumpUrl').parentNode.classList.add('is-OFF');
       $id('js__viewTime').parentNode.classList.add('is-OFF');
       $id('js__displayTimeFlag').parentNode.parentNode.classList.add('is-OFF');
       $id('js__delay').parentNode.classList.add('is-OFF');
     }
 
-    switch (formValue){
+    switch (formValue) {
       // すぐにブロック
       case 'immediately':
         switchBlockTypeOption();
@@ -365,15 +363,15 @@ var $id = function(id){ return document.getElementById(id); };
 
 
   // リストソート
-  var sortableList = function(){
+  var sortableList = function() {
     var target = '#js__side__list';
 
     // 設定
-    jQuery(target).sortable({
+    jQuery(target).sortable( {
       update: function(event, ui) {
         var storageValue = storage.getValue();
         var sortedStorageValue = [];
-        var sortIdArray = jQuery(target).sortable('toArray', {attribute:'data-sortid'});
+        var sortIdArray = jQuery(target).sortable('toArray', { attribute:'data-sortid' });
         for (var i = 0, len = storageValue.length; i < len; i++) {
           sortedStorageValue.push(storageValue[sortIdArray[i]]);
         }
@@ -398,20 +396,20 @@ var $id = function(id){ return document.getElementById(id); };
 /* Debug
 ---------------------------------------------------------------------- */
 
-function debugSet(){
+function debugSet() {
   // var jsonData = 'jsonData';
   // localStorage.removeItem('safariExtention');
   // localStorage.safariExtention = JSON.stringify(jsonData);
   // location.reload();
 }
 
-function debugClear(){
+function debugClear() {
   // var confirmDeleteList = confirm('Delete localStorage?');
-  // if (confirmDeleteList === false){ return false; }
+  // if (confirmDeleteList === false) { return false; }
   // localStorage.removeItem('safariExtention');
   // location.reload();
 }
 
-function debugShow(){
+function debugShow() {
 }
 
