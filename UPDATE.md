@@ -1,5 +1,9 @@
 # Safari Extension - Site Blocker（仮） 更新情報
 
+## 0.6.1
+2017年6月3日（土）
+- jQueryを使用しないように調整
+
 ## 0.6
 2017年5月10日（水）
 - ライセンスをGNU General Public License v3.0へ変更

@@ -5,7 +5,7 @@
 	<key>Author</key>
 	<string>kskg</string>
 	<key>Builder Version</key>
-	<string>11603.1.30.0.34</string>
+	<string>11603.2.5</string>
 	<key>CFBundleDisplayName</key>
 	<string>Site Blocker</string>
 	<key>CFBundleIdentifier</key>
@@ -13,9 +13,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1</string>
+	<string>0.6.1</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>0.6.1</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Database Quota</key>

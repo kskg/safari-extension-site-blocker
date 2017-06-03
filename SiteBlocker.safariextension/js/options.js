@@ -1,8 +1,11 @@
 /* Code
 ---------------------------------------------------------------------- */
 
-// Replace 'document.getElementByID'
-var $id = function(id) { return document.getElementById(id); };
+// Replace 'document.***'
+var $id  = function(id)  { return document.getElementById(id); };
+var $cn  = function(cn)  { return document.getElementsByClassName(cn); };
+var $tag = function(tag) { return document.getElementsByTagName(tag); };
+var $qsa = function(qsa) { return document.querySelectorAll(qsa); };
 
 
 (function() {
@@ -10,7 +13,6 @@ var $id = function(id) { return document.getElementById(id); };
 
   var initialize = function() {
     storage.initialize();
-    sortableList();
   };
 
 
@@ -121,6 +123,7 @@ var $id = function(id) { return document.getElementById(id); };
   var refreshSideContent = function() {
     resetSideContent();
     addSideContentClickEvent();
+    sortableList();
   };
 
 
@@ -362,30 +365,116 @@ var $id = function(id) { return document.getElementById(id); };
   changeBlockType();
 
 
-  // リストソート
-  var sortableList = function() {
-    var target = '#js__side__list';
+  var sortableList = function () {
 
-    // 設定
-    jQuery(target).sortable( {
-      update: function(event, ui) {
+    var listItem = $cn('side__list__item');
+    var dragItem;
+    var dropArea;
+    var overItem;
+    var replaceTarget;
+    var sortId;
+    var isDrag;
+    var isOver;
+    var position;
+    var positionX;
+    var positionY;
+    var css = {
+      drag : 'js__listDrag',
+      over : 'js__listOver',
+      remove : 'js__listRemove',
+      dropArea : 'js__listDropArea'
+    }
+
+
+    var handleMouseDown = function(event) {
+      isDrag = true;
+      replaceTarget = this;
+
+      // リストがズレないように自分を複製
+      dragItem = this.cloneNode(false);
+      dragItem.innerHTML = this.innerHTML;
+      dragItem.classList.add(css.drag);
+      dragItem.classList.add(css.remove);
+      dragItem.style.left = '9999px';
+      dragItem.style.top = '9999px';
+      this.parentNode.insertBefore(dragItem, this.nextSibling);
+      document.body.appendChild(dragItem);
+
+      position = this.getBoundingClientRect();
+      positionX = event.pageX - position.left;
+      positionY = event.pageY - position.top;
+
+      document.addEventListener('mousemove', handleMouseMove, false);
+      document.addEventListener('mouseup', handleMouseUp, false);
+    }
+
+
+    var handleMouseMove = function(event) {
+      dragItem.style.left = event.pageX - positionX + 'px';
+      dragItem.style.top = event.pageY - positionY + 'px';
+    }
+
+
+    var handleMouseOver = function(event) {
+      if (true === isDrag) {
+        overItem = this;
+        overItem.classList.add(css.over);
+
+        // ドロップエリアを生成
+        dropArea = document.createElement('li');
+        dropArea.classList.add(css.dropArea);
+        overItem.parentNode.insertBefore(dropArea, overItem.nextSibling);
+
+        sortId = overItem.getAttribute('data-sortID');
+        isOver = true;
+      }
+    }
+
+
+    var handleMouseOut = function(event) {
+      if (true === isDrag && true === isOver) {
+        dropArea.parentNode.removeChild(dropArea);
+        overItem.classList.remove(css.over);
+        isOver = false;
+      }
+    }
+
+
+    var handleMouseUp = function(event) {
+      if (true === isOver) {
+        dropArea.parentNode.removeChild(dropArea);
+        overItem.parentNode.insertBefore(replaceTarget, overItem.nextSibling);
+        overItem.classList.remove(css.over)
+
+        // ストレージを更新
         var storageValue = storage.getValue();
         var sortedStorageValue = [];
-        var sortIdArray = jQuery(target).sortable('toArray', { attribute:'data-sortid' });
+        var sortIdArray = $qsa('.side__list__item');
         for (var i = 0, len = storageValue.length; i < len; i++) {
-          sortedStorageValue.push(storageValue[sortIdArray[i]]);
+          sortedStorageValue.push(storageValue[sortIdArray[i].getAttribute('data-sortid')]);
         }
         storage.setValue(sortedStorageValue);
         refreshSideContentSortId();
-      },
-      cursor: 'move',                     // 移動中のマウスカーソルのアイコン
-      opacity: 0.7,                       // 移動中の項目の透明度
-      placeholder: 'ui-state-highlight',  // ドロップ先の色指定
-      forcePlaceholderSize: true          // ドラッグした要素のサイズを自動取得
-    });
-    jQuery(target).disableSelection();
+      }
 
-  };
+      dragItem.parentNode.removeChild(dragItem);
+
+      document.removeEventListener('mousemove', handleMouseMove, false);
+      document.removeEventListener('mouseup', handleMouseUp, false);
+
+      isDrag = false;
+      isOver = false;
+    }
+
+
+    for (var i = 0, len = listItem.length; i < len; i++) {
+      listItem[i].addEventListener('mousedown', handleMouseDown, false);
+      listItem[i].addEventListener('mouseover', handleMouseOver, false);
+      listItem[i].addEventListener('mouseout', handleMouseOut, false);
+    }
+
+  }
+
 
   initialize();
 
